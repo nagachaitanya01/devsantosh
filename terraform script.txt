@@ -1,5 +1,5 @@
-access_key = "AKIAQ7NBWPSQFJF5D3IC"
-secret_key = "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"
+access_key = "Aws access key"
+secret_key = "aws secret_key"
 
 
 https://www.bogotobogo.com/DevOps/Terraform/Terraform-terraform-userdata.php
