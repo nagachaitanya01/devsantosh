@@ -1,0 +1,112 @@
+etc/ansible location of ansible
+
+test.playbook.yml file
+- hosts: all
+  tasks:
+     - name: echo
+       command: echo "test"
+
+	   
+	   
+	   
+ ansible -m ping all : check the connection
+ 
+ 
+172.31.22.13 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+
+
+run playbook 
+
+ansible-playbook test.playbook.yml 
+
+
+plabook having multiple tasks 
+tasks having multiple modules
+madule containg steps for deploy package or Java (apt-get install java, yun install java)
+
+
+role
+tomcat java 1.7
+tomcat java 1.8 if i need 1.8 i will call this role in playboook
+
+
+example playbook
+---
+- hosts: all
+ 
+  tasks:
+  - name: copy file
+    copy:
+      src: /root/test.txt
+      dest: /root/
+- hosts: all
+ 
+  tasks:
+  - name: copy file
+    copy:
+      - src: /home/ubuntu/test.txt
+      dest: /home/ubuntu/
+
+
+	  
+Company
+  - name:
+	technology: 
+	  - SW: Dev
+	      - Java
+		  - .Net
+	  - Tool:
+	  - 
+	address:
+	contact:
+	  - land
+	  - mobile
+      	  
+  - name:
+	technology:
+	address:
+	contact:
+	  - mobile
+	  - land
+	
+
+AquaMen:
+  - name: PVR
+    Showtiming:
+	  - 11:30
+	  - 04:15
+	Price:
+  - name: INOX
+    Showtiming:
+      - 12:30
+      - 05:10
+
+
+
+
+
+
+
+
+Majili
+  - name: IMAX
+      - area: KPHB
+    showtimimg:
+      - 11:45
+      - 12:30
+
+
+
+
+
+
+avendgame
+  - name: GPR
+      - area: 
+    showtiming:	  
+  	  
+        
+	  

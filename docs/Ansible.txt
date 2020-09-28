@@ -1,0 +1,42 @@
+http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+rpm -ivh epel-release-latest-7.noarch.rpm
+yum repolist
+yum --enablerepo=epel install ansible
+
+
+   97  apt-get install ansible
+   99  ansible --version
+  100  ls -l
+  101  sudo apt-get update
+  102  sudo apt-get install software-properties-common
+  103  sudo apt-add-repository ppa:ansible/ansible
+  104  sudo apt-get update
+  105  sudo apt-get install ansible
+  106  ansible --version
+  107  ssh-keygen
+  108  cat ~/.ssh/id_rsa.pub
+  112  sudo nano /etc/ansible/hosts
+  128  cat hosts
+  129  vi hosts
+  130  ansible -m ping all
+  131  ls
+  132  vi test-playbook.yml
+  133  ansible-playbook test-playbook.yml
+  134  vi test-playbook.yml
+  135  ansible-playbook test-playbook.yml
+  136  vi test-playbook.yml
+  137  ansible-playbook test-playbook.yml
+  138  vi test-playbook.yml
+  139  ansible-playbook test-playbook.yml
+  142  cd roles/
+  143  where is ansible
+  144  cd /etc/ansible/
+  145  ls
+  146  cat hosts
+  147  vi hosts
+  148  ansible-playbook test-playbook.yml
+  149  ls
+  150  cat test-playbook.yml
+  151  - hosts: all
+  152  ansible -m ping all
+  153  - hosts: all

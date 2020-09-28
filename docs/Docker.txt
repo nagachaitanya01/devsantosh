@@ -1,0 +1,225 @@
+1. instance
+2. docker engine creation/installation 
+('curl -sSL  | sh')or
+curl -fsSL get.docker.com -o get-docker.sh and sh get-docker.sh
+
+3. docker -v
+
+4 docker search images
+
+docker search apache or redhat
+
+5. docker iamges for in our engine we have images or not
+6. docker pull ubuntu:14 (create image)
+7.docker images - it will show the all the images 
+ 
+
+8. docker run -dti --name cnt1 ubuntu /bin/bash (demon termial intractive)
+created the container 64
+
+docker ps (running containers)
+
+9. configuration file cd /var/lib/docker it shows the list of containers and images all
+
+10.cd images/ ---> ls
+display the images 
+
+11.engine to container login 
+docker attach cnt1
+
+apt-get update
+
+apt-get install tree
+
+mkdir docker and cd then --> mkdir test
+touch f1 f2
+
+cd
+
+12.tree docker
+
+13. how to logout press (cntl+PQ)
+
+14. docker run -dti/-ti --name cnt11 -p 81:80 ubuntu (local having 80 i need to give 81 for new)
+
+15.logined new container 
+apt-get update
+apt-get install apache2
+
+---->apt-get install vim (vi editor)
+cd /var/www/html
+remove old file and create new file 
+vi index.html
+create html file
+<html><body><h1>welcome to docker world</h1></body></html>
+:wq
+service apache2 start
+logout cnt 11 (ctrl+PQ)
+
+16.
+go to instance --> security --->default --> inbound -->edit -->add 81,anywhere -->save
+goto browser ip:81/18.219.249.71:81 --> able to see html  
+ 
+docker stop cnt1 .....etc
+
+docker ps -a
+
+create new comntainer on httpd
+docker run -dti --name test1 httpd /bin/bash
+
+then we need to delete container 
+stop the container -- docker stop cnt1
+docker rm cnt1
+
+18.
+delete docker images
+docker rmi ubuntu/httpd/image name
+
+
+-------------------------------------------------------
+
+> docker network ls  (it will display the network list)
+
+docker inspect test1 
+it will display json format see the ip address
+
+docker attach container name from connecting from engine (devops having the access)
+
+we will create container and create user and set 
+
+container nothing but a server
+
+
+login to container test1
+created one user 
+useradd narendra
+passwd narendra
+exit
+
+docker inspect test1
+
+docket network ls
+docket network create --subnet=192.168.0.0/16 mynet
+then 
+docket network ls we can see the docker new network
+
+how to run docker container with the new network
+docker run -dti --name test9 --net mynet --ip 192.168.0.10 -p 82:80 httpd /bin/bash
+
+docker inspect test9
+
+docker attach test9 goto the test9 container
+
+volumes (docker container we can not give the volume directly)
+
+
+
+mkdir mydocker
+docker run -dti --name qshore1 -v /root/mydocker:/tmp ubuntu /bin/bash
+
+cd mydocker
+goto container
+
+docker attach vol
+cd tmp
+crate touch f1 f2 f3 etc
+exit the user
+ cd mydcoker 
+ see the files f1 f2 f3 etc
+ 
+ touch f4 f5 f6 f7
+ goto container we can see newly add in mydcoker
+ 
+ fdisk -l
+ 
+ 
+ 
+ 
+ Creating docker registry 
+ sudo docker run –d –p 5000:5000 –-name registry registry:2
+ 
+ Tag
+ Now let’s tag one of our existing images so that we can push it to our local repository. In our example, since we have the centos image available locally, we are going to tag it to our private repository and add a tag name of centos.
+ 
+ sudo docker tag 67591570dd29 localhost:5000/centos 
+(67591570dd29 refers to the Image ID for the centos image.
+localhost:5000 is the location of our private repository.)
+
+Docker push command to push the repository to our private repository.
+
+sudo docker push localhost:5000/centos 
+
+
+delete the local images we have for centos using the docker rmi commands. We can then download the required centos image from our private repository.
+
+sudo docker rmi centos:latest 
+sudo docker rmi 67591570dd29
+
+Docker image configuration
+-t − is to mention a tag to the image
+
+ImageName − This is the name you want to give to your image.
+
+TagName − This is the tag you want to give to your image.
+
+Dir − The directory where the Docker File is present.
+
+============================================
+docker build 
+docker build  -t ImageName:TagName dir
+sudo docker build -f narendrafile –t myimage:0.1 
+
+docker build .
+docker run --name cnt1 id of build 
+
+
+===========================================
+docker build -t qshoredevops/compiler:1.0 .    to run docker file
+
+docker build -t test-1/compiler-1:1.0 .
+
+docker build -t test-2/compiler-2:1.0 .
+
+docker build -t narendra/test:1.0 .
+
+
+
+docker run -ti --rm qshoredevops/compiler:1.0 /bin/sh (to check image inside)
+docker run -ti --rm cbuild:test
+docker run -ti --rm snc:testbase
+
+docker run -ti --rm test-1/compiler-1:1.0 /bin/sh
+
+docker run -ti --rm test-2/compiler-2:1.0 /bin/sh
+
+docker run -d -it -p 9090:9090 665e707d31bb ( to run docker image and make as container)
+docker run -d -it -p 8080:8080 0ee29cb9cf99
+
+docker run -d -ti -p 8080:8080 --name=jenkins-master jenkins
+
+docker run -d -it 33bf8a8b8351 : image to container  without port
+
+docker run -d -it f02e1fd1e139
+
+============================================
+tag
+docker tag 1061a14d9551 singama91/qshore:test
+
+
+docker exec -it 24837e34a8fe /bin/sh container inside check
+docker exec -it 0ee29cb9cf99 /bin/sh
+
+docker exec -it -u root ac1bf0816fee /bin/bash
+================================================================
+
+docker hub
+https://ropenscilabs.github.io/r-docker-tutorial/04-Dockerhub.html
+
+docker tag 452a96d81c30 singama91/verse_gapminder:jenkins
+
+ 
+
+
+
+
+ 

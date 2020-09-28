@@ -1,0 +1,71 @@
+
+wget https://packages.chef.io/files/stable/chefdk/1.4.3/ubuntu/16.04/chefdk_1.4.3-1_amd64.deb (download chef dk )
+
+ls
+
+dpkg -i chefdk_1.4.3-1_amd64.deb
+
+    1  cp -rv /home/ubuntu/chef-starter\ \(1\).zip /root (or) mv /home/ubuntu/* /root/
+    2  ls
+    3  apt-get install zip unzip
+    4  unzip chef-starter\ \(1\).zip (or) rm -rf chef-starter\ \(1\).zip
+    5  ls
+    6  cd chef-repo/
+    7  ls
+    8  ls -a
+    9  ls .chef
+	
+	root@ip-172-31-5-162:~/chef-repo# knife node list
+
+root@ip-172-31-5-162:~/chef-repo# knife cookbook list
+apache2   3.3.0
+root@ip-172-31-5-162:~/chef-repo# cd cookbooks/
+root@ip-172-31-5-162:~/chef-repo/cookbooks# ls
+chefignore  starter
+root@ip-172-31-5-162:~/chef-repo/cookbooks# cd
+root@ip-172-31-5-162:~# cp /home/ubuntu/narendralinux.pem /tmp
+root@ip-172-31-5-162:~# chmod 600 /tmp/narendralinux.pem
+root@ip-172-31-5-162:~# cd chef-repo
+root@ip-172-31-5-162:~/chef-repo# ls
+cookbooks  README.md  roles
+
+root@ip-172-31-5-162:~/chef-repo# knife bootstrap 13.59.137.132 --sudo -x ubuntu -i /tmp/ubuntu.pem -N "node1"
+
+root@ip-172-31-5-162:~/chef-repo# knife cookbook create file
+
+WARN: This command is being deprecated in favor of `chef generate cookbook` and will soon return an error.
+Please use `chef generate cookbook` instead of this command.
+ at /opt/chefdk/embedded/lib/ruby/gems/2.3.0/gems/chef-12.19.36/lib/chef/knife.rb:443:in `block in run_with_pretty_exceptions'
+ 
+** Creating cookbook file in /root/chef-repo/cookbooks
+** Creating README for cookbook: file
+** Creating CHANGELOG for cookbook: file
+** Creating metadata for cookbook: file
+
+root@ip-172-31-5-162:~/chef-repo# cd cookbooks/file
+root@ip-172-31-5-162:~/chef-repo/cookbooks/file# ls
+attributes    definitions  libraries    providers  recipes    templates
+CHANGELOG.md  files        metadata.rb  README.md  resources
+root@ip-172-31-5-162:~/chef-repo/cookbooks/file# cd recipes/
+root@ip-172-31-5-162:~/chef-repo/cookbooks/file/recipes# ls
+default.rb
+root@ip-172-31-5-162:~/chef-repo/cookbooks/file/recipes# vi default.rb
+
+file "/tmp/satmle.txt" do
+action:create
+end
+
+
+
+knife cookbook upload file
+   14  knife node run_list add node1 recipe[file]
+   15  knife cookbook list
+   16  more default.rb
+
+
+
+
+	
+knife bootstrap 13.58.156.104 -x ubuntu -i /tmp/ubuntu.pem
+
+ 

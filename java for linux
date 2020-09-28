@@ -1,0 +1,51 @@
+● yum install java-1.8.0-openjdk-devel
+● wget http://mirrors.estointernet.in/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+
+● ls
+● sudo tar xf apache-maven-3.6.3-bin.tar.gz -C /opt
+● ls /opt/
+● mkdir /opt/maven
+● mv /opt/apache-maven-3.6.3/* /opt/maven/
+● ls /opt/maven/
+● sudo nano /etc/profile.d/maven.sh
+Paste the following lines:
+/etc/profile.d/maven.sh
+export JAVA_HOME=/usr/lib/jvm/jre-openjdk
+export M2_HOME=/opt/maven
+export MAVEN_HOME=/opt/maven
+export PATH=${M2_HOME}/bin:${PATH}
+● sudo chmod +x /etc/profile.d/maven.sh
+● source /etc/profile.d/maven.sh
+● mvn -version
+
+
+
+rpm -ql software-name =====>> to know about the software installation path
+ apt-get update
+    4  apt-get install java
+    5  sudo add-apt-repository ppa:webupd8team/java
+    6  apt-get install java
+    7  sudo apt install openjdk-8-jdk
+    8  java -version
+    9  cd /opt
+   10  ls
+   11  wget https://download.sonatype.com/nexus/oss/nexus-latest-bundle.tar.gz
+   12  ls
+   13  tar -xvf nexus-latest-bundle.tar.gz
+  mv /opt/nexus-2.14.16-01 /opt/nexus
+   27  ls
+   28  sudo adduser nexus
+   29  vi /etc/sudoers
+   30  sudo chown -R nexus:nexus /opt/nexus
+   sudo chown -R nexus:nexus /opt/sonatype-work
+   3 sudo vi /opt/nexus/nexus-2.14.16-01/bin/nexus.rc (give run_as_user="nexus")
+   
+   43  sudo ln -s /opt/nexus/nexus-2.14.16-01/bin/nexus /etc/init.d/nexus
+   44  su - nexus
+   45 /etc/init.d/nexus start
+1      [or] cd /opt/
+            cd nexus
+			cd bin  
+			./nexus start
+   
+

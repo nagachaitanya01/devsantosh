@@ -1,0 +1,12 @@
+mvn archetype:generate -DgroupId=com.qshore.web -DartifactId=webapp -DarchetypeArtifactId=maven-archetype-webapp
+
+
+
+sudo yum install tomcat-webapps tomcat-admin-webapps tomcat-docs-webapp tomcat-javadoc
+
+disributed build system ---> master and slave concept in Jenkins
+backup plugin 
+build history metrics plugin
+
+
+55ef2fa33a575e6a781bac182dc6d98d0c92db78---->>git hub token with name "hi"

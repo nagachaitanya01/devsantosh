@@ -1,0 +1,13 @@
+create a file as vi movie in that add 
+simha    balaya    boyapati
+dhammu   ntr       boyapati
+kick     raviteja  surendra
+mahadera ramchran  rajamouli
+pokiri   mahesh    puri
+jaanu    sharwa    prem
+~
+~
+sort movie | awk '{print$1}'   ====prints the first coloumn
+sort movie | awk '{print$1,"->",$2}' > hero.txt    =======prints the 1st and 2nd coloumn in hero.txt file
+sort movie | awk '{print$1,"->",$3}' > director.txt  =====prints the 2nd and 3rd coloumn in director.txt file
+

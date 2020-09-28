@@ -1,0 +1,53 @@
+knife bootstrap 18.191.3.79 --sudo -x ubuntu -i /home/ubuntu/narendralinux.pem -N "chefnode"
+
+knife bootstrap 18.191.3.79 -x ubuntu -P /root/narendralinux.pem --sudo -N "chefnode"
+
+knife bootstrap 18.191.3.79 --sudo -x ubuntu -i /root/narendralinux.pem -N "chefnode"
+
+knife bootstrap 18.220.102.93 --sudo -x ubuntu -i /root/hariredhat.pem -N "node3"
+
+cp /home/ubuntu/narendralinux.pem /tmp
+
+ knife bootstrap 18.221.168.110 --sudo -x ec2-user -i /root/qshorechef.pem -N "chefnode"    == right
+
+ knife bootstrap 18.191.133.136 --sudo -x ubuntu -i /root/divyadevops.pem -N "Chefnode"
+ 
+ 18.188.133.190
+ 
+ knife bootstrap 52.15.198.98 --sudo -x ubuntu -i /root/narendralinux.pem -N "chefnode2"
+ 
+ knife bootstrap 18.218.143.78 --sudo -x ubuntu -i /root/chefubuntu.pem -N "chefnode1"
+ 
+ chefdk_1.4.3-1_amd64.deb.1
+ 
+ 
+ 18.222.50.45
+ 
+ 
+ knife client list
+ 
+ chef generate cookbook book3
+ 
+ directory '/root/book3' do
+ action :create
+ end
+ 
+ knife node run_list add chefnode 'role[lenevo]'
+ 
+ 
+ scoope wipro= 9100041563
+ 
+ virtusa = +914447402000 -1360
+ 
+ +914439604600-85393
+ 
+ 9100373136
+ 
+ 5243736501260603
+ 01/20
+ 450
+ 
+ 
+ 
+ 
+Comment:	https://www.slideshare.net/mobile/gibsson/android-ota-updates

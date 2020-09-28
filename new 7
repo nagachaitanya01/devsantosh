@@ -1,0 +1,40 @@
+http://184.72.68.51:8081/nexus/service/local/repositories/dev/content/dev/webapp/{{BUILD_ID}}/webapp-{{BUILD_ID}}.war
+
+
+
+
+---
+- hosts: webserver
+  become: true
+  tasks:
+  - name: install JDK 1.8.0
+    yum: name=java-1.8.0-openjdk state=present update_cache=yes
+
+  - name: install EPEL repo.
+    yum:
+     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+     state: present
+  - name: install tomcat
+    yum: name=tomcat state=present update_cache=yes
+  - name: install tomcat webapps
+    yum: name=tomcat-webapps state=present
+  - name: install tomcat admin-webapps
+    yum:
+     name: tomcat-admin-webapps
+     state: present
+  - name: delete tomcat-users.xml
+    file:
+     path: /etc/tomcat/tomcat-users.xml
+	  state: absent
+  - name: copy tomcat-users.xml from ansible control machine
+    copy:
+     src: tomcat-users.xml
+     dest: /etc/tomcat/
+  - name: restart tomcat
+    service: name=tomcat state=restarted
+  - name: copy artifacts from NEXUS
+    get_url:
+     url: http://54.175.211.5:8081/nexus/service/local/repositories/dev/content/dev/webapp/{{BUILD_ID}/webapp-{{BUILD_ID}.war
+     dest: /usr/share/tomcat/webapps/
+
+

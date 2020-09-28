@@ -1,0 +1,100 @@
+
+#Install java
+
+yum install java-1.8.0-openjdk-devel
+
+
+
+git hub repository for sonarqube,maven,Ansible_on_Ubuntu_container,Puppet_on_centos_containers
+
+
+
+
+
+
+
+
+#Install mysql:
+
+Following steps we will configure sonarqube with mysql. Download the repository, update and install MySQL
+ 
+ 
+sudo yum install wget unzip -y
+wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm
+yum update -y
+sudo yum install mysql-server
+sudo systemctl start mysqld
+ 
+ 
+Create db and user for Sonarqube:
+Login into MySQL and execute below commands step by step.
+
+to login to MySQL use this command “mysql -u root”
+ 
+mysql -u root
+CREATE DATABASE sonarqube_db;
+CREATE USER 'sonarqube_user'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON sonarqube_db.* TO 'sonarqube_user'@'localhost' IDENTIFIED BY 'password';
+FLUSH PRIVILEGES;
+exit
+ 
+ 
+#Download and install SonarQube:
+
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-6.7.6.zip
+unzip sonarqube-6.7.6.zip
+mv sonarqube-6.7.6 /opt/sonarqube
+ 
+ 
+Create a user for SonarQube:
+Create a new user for SonarQube. Because we cannot run the newer versions of sonarqube as the root user. If you run sonarqube with root user will get error like java.lang.RuntimeException: can not run elasticsearch as root.
+
+Since we are running SonarQube as a separate user, assign proper ownership to SonarQube files.
+
+useradd sonarqube
+passwd sonarqube
+chown -R sonarqube:sonarqube /opt/sonarqube
+ 
+ 
+Open the SonarQube startup script and specify the sonarqube user details.
+
+vi /opt/sonarqube/bin/linux-x86-64/sonar.sh
+#add below line
+RUN_AS_USER=sonarqube
+ 
+ 
+#Configure sonarqube with MySQL database:
+open the SonarQube configuration file
+
+vi /opt/sonarqube/conf/sonar.properties 
+
+#add below lines
+sonar.jdbc.username=sonarqube_user
+sonar.jdbc.password=password
+sonar.jdbc.url=jdbc:mysql://localhost:3306/sonarqube_db?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
+ 
+ 
+#Start SonarQube
+You can now start SonarQube by running the following command.
+/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+  
+That’s all we have configured sonarqube successfully in centos and rhel.
+
+
+If you have done everything correctly, You can access sonarqube using http://ipaddress:9000
+
+Note: for sonarqube you need minumum 2gb ram in your server. then only sonarqube will work as expected.
+
+© 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About

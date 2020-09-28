@@ -1,0 +1,66 @@
+access_key = "AKIAQ7NBWPSQFJF5D3IC"
+secret_key = "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"
+
+
+https://www.bogotobogo.com/DevOps/Terraform/Terraform-terraform-userdata.php
+
+
+
+
+# Configure the AWS Provider
+provider "aws" {
+  version = "~> 2.0"
+  region  = "us-east-1"
+  access_key = "AKIAQ7NBWPSQFJF5D3IC"
+  secret_key = "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"
+}
+
+# Create a VPC
+resource "aws_vpc" "main" {
+  cidr_block       = "10.0.0.0/16"
+  instance_tenancy = "default"
+
+  tags = {
+    Name = "main"
+  }
+}
+#create subnet
+resource "aws_subnet" "main" {
+  vpc_id     = "${aws_vpc.main.id}"
+  cidr_block = "10.0.1.0/24"
+
+  tags = {
+    Name = "subnet-1"
+  }
+}
+resource "aws_instance" "bnc" {
+    ami = "ami-08f3d892de259504d"
+    instance_type = "t2.micro"
+    key_name = "Bncv"
+    security_groups = ["all traffic"]
+    tags = {
+        Name = "server-1"
+    }
+}
+#creating volume
+resource "aws_ebs_volume" "example" {
+  availability_zone = "us-east-1e"
+  size              = 2
+
+  tags = {
+    Name = "HelloWorld"
+  }
+}
+#creating snapshot
+resource "aws_ebs_snapshot" "example_snapshot" {
+  volume_id = "${aws_ebs_volume.example.id}"
+
+  tags = {
+    Name = "HelloWorld_snap"
+  }
+ #creating an image using instance id
+ resource "aws_ami_from_instance" "example" {
+  name               = "terraform-example"
+  source_instance_id = "${aws_instance.bnc.id}"
+}
+}
